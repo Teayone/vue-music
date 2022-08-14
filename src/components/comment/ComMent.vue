@@ -15,12 +15,11 @@
         <div class="ipt" @click="ShiFouDengLu">
           <textarea
             class="textarea"
-            name=""
-            id=""
             required
             placeholder="评论"
             maxlength="140"
             v-model="msg"
+            style="resize: none"
           ></textarea>
         </div>
         <!-- 评论按钮 -->
@@ -58,6 +57,7 @@
 import Tags from "../tagsBox/Tags.vue";
 import UserComment from "./children/UserComment.vue";
 import { sendComment } from "../../api/api";
+import { nextTick } from "process";
 export default {
   name: "ComMent",
   components: { Tags, UserComment },
@@ -68,6 +68,7 @@ export default {
       msg: "",
       // 是否登录,默认false
       isLogin: false,
+      comment: null,
     };
   },
   created() {
@@ -81,9 +82,9 @@ export default {
   },
   mounted() {
     let _this = this;
-    let comment = document.getElementById("comment");
-    this.$bus.$on("ToComment", function () {
-      comment.scrollIntoView();
+    this.comment = document.getElementById("comment");
+    this.$bus.$on("ToComment", () => {
+      this.comment.scrollIntoView({ behavior: "smooth" });
     });
     this.$bus.$on("ShiFowDengLu", function (value) {
       _this.isLogin = value;
@@ -116,6 +117,9 @@ export default {
     handleCurrentChange(newPage) {
       // 父传子
       this.$emit("CurrentChange", newPage);
+      this.$nextTick(() => {
+        this.comment.scrollIntoView({ behavior: "smooth" });
+      });
     },
   },
   computed: {

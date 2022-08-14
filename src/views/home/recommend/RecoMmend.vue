@@ -1,6 +1,6 @@
 <template>
   <div id="recommend">
-    <tab-bar :items="items"></tab-bar>
+    <tab-bar></tab-bar>
     <!-- 每日推荐歌曲详情页 -->
     <div class="wrap3 main">
       <div class="main-left">
@@ -40,21 +40,10 @@ export default {
     return {
       // 保存每日的歌单数据
       recommend: null,
-      items: [
-        { title: "推荐", path: "/home" },
-        { title: "排行榜", path: "/toplist" },
-        { title: "歌单", path: "/playlist" },
-        { title: "主播电台", path: "/djradio" },
-        { title: "歌手", path: "/artist" },
-        { title: "新碟上架", path: "/album" },
-      ],
     };
   },
   created() {
     this.getRe();
-  },
-  mounted() {
-    this.$bus.$emit("activeChildrenRoute", null);
   },
   methods: {
     async getRe() {

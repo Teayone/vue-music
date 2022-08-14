@@ -1,6 +1,6 @@
 <template>
   <div class="artist-page">
-    <tab-bar :items="items"></tab-bar>
+    <tab-bar></tab-bar>
     <div class="main wrap3">
       <div class="left">
         <list-text></list-text>
@@ -21,23 +21,6 @@ import ListText from "./children/ListText.vue";
 export default {
   name: "ArtistPage",
   components: { TabBar, ListText },
-  data() {
-    return {
-      items: [
-        { title: "推荐", path: "/home" },
-        { title: "排行榜", path: "/toplist" },
-        { title: "歌单", path: "/playlist" },
-        { title: "主播电台", path: "/djradio" },
-        { title: "歌手", path: "/artist" },
-        { title: "新碟上架", path: "/album" },
-      ],
-    };
-  },
-
-  mounted() {
-    // 激活时,触发tabbar
-    this.$bus.$emit("activeChildrenRoute", 4);
-  },
 };
 </script>
 

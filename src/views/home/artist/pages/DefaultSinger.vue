@@ -55,7 +55,10 @@ export default {
     scrollFuc(dc) {
       let _this = this;
       let ds = document.documentElement.scrollHeight;
-      if (document.documentElement.scrollTop + dc == ds) {
+      if (
+        document.documentElement.scrollTop + dc >= ds ||
+        ds - (document.documentElement.scrollTop + dc) < 1
+      ) {
         this.offset++;
         getTopArtist(this.offset).then((v) => {
           if (v.data.artists.length === 0) {

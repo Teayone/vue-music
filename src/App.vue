@@ -35,7 +35,7 @@ export default {
     // 解决路由跳转参数不同时页面不刷新问题
     key() {
       return this.$route.name
-        ? this.$route.name + +newDate()
+        ? this.$route.name + +new Date()
         : this.$route + +new Date();
     },
   },

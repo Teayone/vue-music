@@ -91,10 +91,7 @@ export default {
       this.moveTime();
     },
     handleToDownload() {
-      this.$bus.$emit("activeRoute", {
-        index: 5,
-        path: "/download",
-      });
+      this.$router.push("/download");
     },
     jumpBtn(i) {
       this.index = i;

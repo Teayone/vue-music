@@ -1,7 +1,7 @@
 <template>
   <div id="albums-detail">
     <!-- 单独的专辑详情页 -->
-    <tab-bar :items="items"></tab-bar>
+    <tab-bar></tab-bar>
     <lay-out>
       <template #left>
         <cover-box
@@ -86,10 +86,6 @@ export default {
   created() {
     this.getData(this.$route.query.id);
   },
-  mounted() {
-    // 激活时,触发tabbar
-    this.$bus.$emit("activeChildrenRoute", null);
-  },
   methods: {
     async getData(id) {
       // 专辑数据
@@ -134,5 +130,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

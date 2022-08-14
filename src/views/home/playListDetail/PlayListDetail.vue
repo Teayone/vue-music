@@ -1,7 +1,7 @@
 <template>
   <div id="paly-list-detail">
     <!-- 歌单具体的详情页，需要接收到id -->
-    <tab-bar :items="items"></tab-bar>
+    <tab-bar></tab-bar>
     <lay-out>
       <!-- 左侧布局 -->
       <template #left>
@@ -73,14 +73,6 @@ export default {
   },
   data() {
     return {
-      items: [
-        { title: "推荐", path: "/home" },
-        { title: "排行榜", path: "toplist" },
-        { title: "歌单", path: "playlist" },
-        { title: "主播电台", path: "djradio" },
-        { title: "歌手", path: "artist" },
-        { title: "新碟上架", path: "album" },
-      ],
       // 歌曲数据
       songList: [],
       // 封面标题数据
@@ -97,10 +89,6 @@ export default {
   },
   created() {
     this.getListDetail(this.$route.query.id);
-  },
-  mounted() {
-    // 激活时,触发tabbar
-    this.$bus.$emit("activeChildrenRoute", null);
   },
   methods: {
     async getListDetail(id) {
@@ -146,5 +134,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

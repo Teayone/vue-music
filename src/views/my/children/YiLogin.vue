@@ -186,6 +186,8 @@ export default {
 <style scoped>
 #yi-login {
   display: flex;
+  height: calc(100vh - 76px);
+  overflow: hidden;
 }
 
 .left {
@@ -196,6 +198,8 @@ export default {
   overflow-y: auto;
   border-right: 1px solid #ccc;
   background: #f9f9f9;
+  padding-bottom: 40px;
+  box-sizing: border-box;
 }
 .ul > .tabs {
   position: relative;
@@ -231,6 +235,8 @@ export default {
   padding-top: 40px;
   overflow-x: hidden;
   overflow-y: auto;
+  padding-bottom: 70px;
+  box-sizing: border-box;
 }
 .info-box {
   display: flex;

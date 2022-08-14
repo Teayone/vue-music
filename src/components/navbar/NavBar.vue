@@ -5,7 +5,19 @@
         <a href="javascript:;" @click="toHome">网易云音乐</a>
       </div>
       <ul class="nav-item clearfix">
-        <li
+        <router-link
+          tag="li"
+          active-class="active"
+          v-for="(item, index) in nav"
+          :key="index"
+          class="nav-items"
+          :to="item.path"
+          :data-index="index"
+          exact
+        >
+          {{ item.title }}
+        </router-link>
+        <!-- <li
           v-for="(item, index) in nav"
           :key="index"
           class="nav-items"
@@ -14,7 +26,7 @@
           :class="{ active: index === curIndex }"
         >
           {{ item.title }}
-        </li>
+        </li> -->
       </ul>
       <div class="nav-tools">
         <!-- 搜索框 -->
@@ -183,7 +195,7 @@ export default {
   data() {
     return {
       nav: [
-        { title: "发现音乐", path: "/" },
+        { title: "发现音乐", path: "/home" },
         { title: "我的音乐", path: "/my" },
         { title: "朋友", path: "/friend" },
         { title: "商城", path: "/store" },
@@ -262,14 +274,6 @@ export default {
   mounted() {
     // 解决点击跳转下载模块，下载按钮不会添加类名的 BUG
     let self = this;
-    this.$bus.$on("activeRoute", function ({ index, path }) {
-      self.handleToPath(index, path);
-    });
-    // 歌手的主页
-    this.$bus.$on("activeRouer", function (index) {
-      self.activeRouer(index);
-    });
-
     // 显示登录框
     this.$bus.$on("showLoginBox", function () {
       self.handleToLogin();
@@ -289,27 +293,6 @@ export default {
       let { data: uad } = await getUserAdminDetail();
       this.$store.commit("USERDETAIL", uad.profile);
       localStorage.setItem("headimg", JSON.stringify(uad.profile.avatarUrl));
-    },
-    activeRouer(i) {
-      this.curIndex = i;
-    },
-    // 跳转至歌手或其它人的主页
-    handleToPath(index, p, id) {
-      this.curIndex = index;
-      if (this.$route.path === p) {
-        return;
-      } else {
-        if (id) {
-          this.$router.push({
-            path: p,
-            query: {
-              id,
-            },
-          });
-        } else {
-          this.$router.push(p);
-        }
-      }
     },
     handleToUserHome(id) {
       this.$router.push({

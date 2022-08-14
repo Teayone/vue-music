@@ -1,7 +1,7 @@
 <template>
   <div id="user-home">
     <!-- 用户主页(歌手或主播) -->
-    <tab-bar></tab-bar>
+    <tab-bar :isShow="false"></tab-bar>
     <div class="main wrap3">
       <user-info :userData="userData"></user-info>
       <song-ranking :songNum="userData" :songKing="songKing"></song-ranking>

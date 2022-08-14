@@ -1,6 +1,6 @@
 <template>
   <div id="download">
-    <tab-bar></tab-bar>
+    <tab-bar :isShow="false"></tab-bar>
     <div class="wrap main-download">
       <div class="download-left">
         <h2 class="download-left-title">在电脑上听</h2>
@@ -43,12 +43,6 @@ import TabBar from "../../components/tabbar/TabBar.vue";
 export default {
   name: "DownLoad",
   components: { TabBar },
-  mounted() {
-    this.$bus.$emit("activeRoute", {
-      index: 5,
-      path: "/download",
-    });
-  },
 };
 </script>
 

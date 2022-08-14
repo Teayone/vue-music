@@ -56,7 +56,7 @@
             <i
               class="iconfont icon-tianjia add"
               title="添加到播放列表"
-              @click="addList(item.id)"
+              @click="addList(item.id, item)"
             ></i>
             <i
               class="iconfont icon-shoucang sc"

@@ -1,6 +1,6 @@
 <template>
   <div id="album">
-    <tab-bar :items="items"></tab-bar>
+    <tab-bar></tab-bar>
     <!-- 热门新碟 -->
     <div class="main wrap3">
       <ctext text="热门新碟" ff="font-size:24px;"></ctext>
@@ -27,14 +27,6 @@ export default {
   components: { TabBar, Ctext, hotAlbum, QuanBuAlbums },
   data() {
     return {
-      items: [
-        { title: "推荐", path: "/home" },
-        { title: "排行榜", path: "/toplist" },
-        { title: "歌单", path: "/playlist" },
-        { title: "主播电台", path: "/djradio" },
-        { title: "歌手", path: "/artist" },
-        { title: "新碟上架", path: "/album" },
-      ],
       hotAlbums: null,
       allAlbums: null,
       total: null,
@@ -45,10 +37,6 @@ export default {
   },
   created() {
     this.getData();
-  },
-  mounted() {
-    // 激活时,触发tabbar
-    this.$bus.$emit("activeChildrenRoute", 5);
   },
   methods: {
     async getData() {

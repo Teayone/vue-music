@@ -67,20 +67,13 @@ export default {
       flag: false,
     };
   },
-  created() {
-    setTimeout(() => {
-      if (this.$refs.geci.offsetHeight > 299) {
-        this.show = true;
-        this.flag = true;
-      }
-    }, 300);
-  },
   mixins: [songPlay],
   methods: {
-    isShow() {
+    isShow(e) {
       this.show = !this.show;
       if (this.show) {
         this.msg = "展开";
+        document.documentElement.scrollTop = 0;
       } else {
         this.msg = "收起";
       }
@@ -105,6 +98,14 @@ export default {
           id,
         },
       });
+    },
+  },
+  watch: {
+    str(newVal) {
+      if (newVal.length > 15) {
+        this.show = true;
+        this.flag = true;
+      }
     },
   },
 };

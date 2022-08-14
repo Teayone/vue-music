@@ -1,7 +1,7 @@
 <template>
   <div id="song">
     <!-- 歌曲详情页 -->
-    <tab-bar :items="items"></tab-bar>
+    <tab-bar></tab-bar>
     <lay-out>
       <template #left>
         <!-- 歌曲封面和歌曲信息组件 -->
@@ -45,14 +45,6 @@ export default {
   components: { TabBar, LayOut, songBox, ComMent, TagsBox, HotList, SimiSongs },
   data() {
     return {
-      items: [
-        { title: "推荐", path: "/home" },
-        { title: "排行榜", path: "toplist" },
-        { title: "歌单", path: "playlist" },
-        { title: "主播电台", path: "djradio" },
-        { title: "歌手", path: "artist" },
-        { title: "新碟上架", path: "album" },
-      ],
       songs: null,
       str: [],
       hotComments: null,
@@ -65,10 +57,6 @@ export default {
   },
   created() {
     this.getSong(this.$route.query.id);
-  },
-  mounted() {
-    // 激活时,触发tabbar
-    this.$bus.$emit("activeChildrenRoute", null);
   },
   methods: {
     async getSong(id) {
@@ -122,5 +110,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

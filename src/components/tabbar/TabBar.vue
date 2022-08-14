@@ -4,16 +4,12 @@
       <ul class="list">
         <li
           class="items"
-          v-for="(item, index) in items"
+          v-for="(item, index) in isShow ? list : []"
           :key="index"
-          @click="tabItems(index)"
         >
-          <a
-            href="javascript:;"
-            :class="{ active: index === currentIndex }"
-            @click="tabItems(index, item.path)"
-            >{{ item.title }}</a
-          >
+          <router-link :to="item.path" active-class="active">
+            {{ item.title }}
+          </router-link>
         </li>
       </ul>
     </div>
@@ -24,31 +20,30 @@
 export default {
   name: "TabBar",
   props: {
-    items: {
-      type: Array,
-      default() {
-        return [];
-      },
+    activeIndex: {
+      type: [Number, String],
+      default: 0,
+    },
+    isShow: {
+      type: Boolean,
+      default: true,
     },
   },
   data() {
     return {
-      currentIndex: 0,
+      list: [
+        { title: "推荐", path: "/home" },
+        { title: "排行榜", path: "/toplist" },
+        { title: "歌单", path: "/playlist" },
+        { title: "主播电台", path: "/djradio" },
+        { title: "歌手", path: "/artist" },
+        { title: "新碟上架", path: "/album" },
+      ],
     };
   },
-  mounted() {
-    let self = this;
-    // 监视正在激活的路由
-    this.$bus.$on("activeChildrenRoute", function (index) {
-      self.tabItems(index);
-    });
-  },
   methods: {
-    tabItems(i, path) {
-      this.currentIndex = i;
-      if (path) {
-        this.$router.push(path);
-      }
+    tabItems(path) {
+      this.$router.push(path);
     },
   },
 };

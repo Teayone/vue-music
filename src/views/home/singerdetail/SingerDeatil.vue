@@ -1,7 +1,7 @@
 <template>
   <div id="singer">
     <!-- 歌手的具体详情页 -->
-    <tab-bar :items="items"></tab-bar>
+    <tab-bar></tab-bar>
     <lay-out>
       <template #left>
         <div class="box" v-if="singerData">
@@ -52,14 +52,6 @@ export default {
   components: { TabBar, LayOut, SingerTab, TagsBox, SimilarBox },
   data() {
     return {
-      items: [
-        { title: "推荐", path: "/home" },
-        { title: "排行榜", path: "toplist" },
-        { title: "歌单", path: "playlist" },
-        { title: "主播电台", path: "djradio" },
-        { title: "歌手", path: "artist" },
-        { title: "新碟上架", path: "album" },
-      ],
       tabs: [
         { name: "热门作品", path: "/singer/artist" },
         { name: "所有专辑", path: "/singer/album" },
@@ -78,9 +70,6 @@ export default {
   },
   created() {
     this.getSingData(this.$route.query.id);
-  },
-  mounted() {
-    this.$bus.$emit("activeChildrenRoute", null);
   },
   methods: {
     async getSingData(id) {

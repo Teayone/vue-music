@@ -1,6 +1,6 @@
 <template>
   <div id="toplist">
-    <tab-bar :items="items"></tab-bar>
+    <tab-bar></tab-bar>
     <clay-out>
       <template #left>
         <top-list-title text="云音乐特色榜"></top-list-title>
@@ -50,14 +50,6 @@ export default {
   },
   data() {
     return {
-      items: [
-        { title: "推荐", path: "/home" },
-        { title: "排行榜", path: "/toplist" },
-        { title: "歌单", path: "/playlist" },
-        { title: "主播电台", path: "/djradio" },
-        { title: "歌手", path: "/artist" },
-        { title: "新碟上架", path: "/album" },
-      ],
       // 云音乐特色榜(前四)
       FeatureList: null,
       // 全球媒体榜
@@ -78,10 +70,6 @@ export default {
     } else {
       this.getData(19723756);
     }
-  },
-  mounted() {
-    // 激活时,触发tabbar
-    this.$bus.$emit("activeChildrenRoute", 1);
   },
   methods: {
     async getData(id) {

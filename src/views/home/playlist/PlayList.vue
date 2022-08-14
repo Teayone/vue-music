@@ -1,7 +1,7 @@
 <template>
   <div id="playlist" ref="playList">
     <!-- 歌单页，就是很多歌单，但不是具体歌单的详情页 -->
-    <tab-bar :items="items"></tab-bar>
+    <tab-bar active-index="2"></tab-bar>
     <div class="main wrap3">
       <ctitle :tags="tags" :name="name"></ctitle>
       <cover-list :playlists="playlists" :show="true"></cover-list>
@@ -30,14 +30,6 @@ export default {
   components: { TabBar, Ctitle, CoverList },
   data() {
     return {
-      items: [
-        { title: "推荐", path: "/home" },
-        { title: "排行榜", path: "/toplist" },
-        { title: "歌单", path: "/playlist" },
-        { title: "主播电台", path: "/djradio" },
-        { title: "歌手", path: "/artist" },
-        { title: "新碟上架", path: "/album" },
-      ],
       tags: null,
       // 歌单数据
       playlists: null,
@@ -54,8 +46,6 @@ export default {
     }
   },
   mounted() {
-    // 激活时,触发tabbar
-    this.$bus.$emit("activeChildrenRoute", 2);
     this.playListDom = this.$refs.playList;
   },
   methods: {

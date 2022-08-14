@@ -1,6 +1,6 @@
 <template>
   <div id="level">
-    <tab-bar></tab-bar>
+    <tab-bar :isShow="false"></tab-bar>
     <div class="level-main wrap3" v-if="levelData">
       <h1>
         当前等级：<span>Lv.{{ levelData.level }}</span>

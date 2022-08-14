@@ -1,7 +1,6 @@
 <template>
   <div id="home">
-    <tab-bar :items="items"></tab-bar>
-
+    <tab-bar></tab-bar>
     <discover></discover>
   </div>
 </template>
@@ -19,18 +18,6 @@ import { getLoginPlayList } from "../../api/api";
 export default {
   components: { TabBar, Discover },
   name: "Home",
-  data() {
-    return {
-      items: [
-        { title: "推荐", path: "/home" },
-        { title: "排行榜", path: "toplist" },
-        { title: "歌单", path: "playlist" },
-        { title: "主播电台", path: "djradio" },
-        { title: "歌手", path: "artist" },
-        { title: "新碟上架", path: "album" },
-      ],
-    };
-  },
   created() {
     let cookies = localStorage.getItem("userInfo");
     if (cookies) {
@@ -41,11 +28,6 @@ export default {
   },
   mounted() {
     let self = this;
-    // 路由激活控制 navbar 的动态类名
-    this.$bus.$emit("activeRoute", {
-      index: 0,
-      path: "/",
-    });
     this.$bus.$on("login", function () {
       self.getUserData();
     });
@@ -77,5 +59,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

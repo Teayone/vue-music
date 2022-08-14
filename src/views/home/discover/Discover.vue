@@ -122,14 +122,6 @@ export default {
     }
   },
 
-  // 路由激活时，触发tabbar，navbar
-  activated() {
-    this.$bus.$emit("activeChildrenRoute", 0);
-    this.$bus.$emit("activeRoute", {
-      index: 0,
-      path: "/",
-    });
-  },
   methods: {
     async getData() {
       // 轮播图数据
