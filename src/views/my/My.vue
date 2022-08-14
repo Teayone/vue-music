@@ -1,6 +1,6 @@
 <template>
   <div id="my">
-    <tab-bar></tab-bar>
+    <tab-bar :isShow="false"></tab-bar>
     <div class="main wrap3">
       <!-- 未登录时的页面 -->
       <wei-login v-if="isLogin"></wei-login>
