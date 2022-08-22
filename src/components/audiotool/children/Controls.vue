@@ -1,7 +1,7 @@
 <template>
   <div id="controls">
     <!-- 控制音量,循环,播放列表 -->
-    <div class="volume">
+    <div class="volume" refs="volume">
       <a href="javascript:;" :class="icon" @click="flag = !flag"></a>
       <!-- 音量调节盒子 -->
       <div class="volume-change" v-show="flag">
@@ -94,18 +94,7 @@ export default {
       this.$bus.$emit("volume", vp);
     }, 500);
     // 关闭音量框
-    document.addEventListener("click", function (e) {
-      if (
-        e.target.className !== "iconfont icon-yinliang" &&
-        e.target.className !== "volume-change" &&
-        e.target.className !== "bar-red" &&
-        e.target.className !== "bar"
-      ) {
-        if (_this.flag) {
-          _this.flag = false;
-        }
-      }
-    });
+    document.body.addEventListener("click", this.closeVloume);
     // 更新播放列表的歌曲数量
     this.$bus.$on("songNum", () => {
       _this.up();
@@ -200,6 +189,14 @@ export default {
         this.showPatternTips = false;
       }, 2000);
     },
+    // 关闭音量条
+    closeVloume(e) {
+      if (!e.target.contains(this.$refs.volume)) {
+        if (this.flag) {
+          this.flag = false;
+        }
+      }
+    },
   },
   computed: {
     songNum() {
@@ -209,6 +206,9 @@ export default {
         return 0;
       }
     },
+  },
+  beforDestory() {
+    document.body.removeEventListener("click", this.closeVloume);
   },
 };
 </script>

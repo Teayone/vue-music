@@ -20,7 +20,6 @@ import AudioTool from "./components/audiotool/AudioTool.vue";
 import BackTop from "./components/backtop/BackTop.vue";
 import Music from "./components/music/Music.vue";
 import CollectSongs from "./components/CollectSongs/CollectSongs.vue";
-import { show } from "./plugins/loading";
 export default {
   name: "App",
   components: {

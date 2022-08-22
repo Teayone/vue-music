@@ -1,6 +1,6 @@
 <template>
   <div id="song" v-if="songs !== null">
-    <ul v-if="songs.songs && songs.songs.length !== 0">
+    <ul v-if="songs.songs && songs.songs.length !== 0" ref="song-list">
       <li v-for="item in songs.songs" :key="item.id">
         <div class="play">
           <i

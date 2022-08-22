@@ -1,5 +1,5 @@
 <template>
-  <div id="search-items">
+  <div id="search-items" ref="search">
     <p class="title">
       搜索"{{ $route.query.s }}",找到
       <span class="num">{{
@@ -133,32 +133,17 @@ export default {
     }
 
     if (t) {
-      let n = Number(t);
-      switch (n) {
-        case 1:
-          _this.info = "首单曲";
-          break;
-        case 100:
-          _this.info = "个歌手";
-          break;
-        case 10:
-          _this.info = "张专辑";
-          break;
-        case 1014:
-          _this.info = "个视频";
-          break;
-        case 1006:
-          _this.info = "个歌词";
-          break;
-        case 1000:
-          _this.info = "个歌单";
-          break;
-        case 1009:
-          _this.info = "个节目";
-          break;
-        case 1002:
-          _this.info = "个用户";
-      }
+      const data = {
+        1: "首单曲",
+        100: "个歌手",
+        10: "张专辑",
+        1014: "个视频",
+        1006: "个歌词",
+        1000: "个歌单",
+        1009: "个节目",
+        1002: "个用户",
+      };
+      this.info = data[t];
     } else {
       _this.info = "首单曲";
     }
@@ -189,6 +174,7 @@ export default {
       let t = this.$route.query.type;
       let { data: res } = await searchList(k, t, (newPage - 1) * 30);
       this.shuju = res;
+      this.$refs.search.scrollIntoView({ behavior: "smooth" });
     },
   },
   computed: {

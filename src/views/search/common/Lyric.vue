@@ -79,6 +79,7 @@ export default {
     return {
       // 歌词数组
       txt: [],
+      scrollTop: 0,
     };
   },
   created() {
@@ -107,6 +108,7 @@ export default {
       this.toClick();
     },
     toClick() {
+      const _this = this;
       setTimeout(() => {
         // 控制歌词的展开与隐藏(原生JS写的)
         let geci = document.querySelectorAll("#geci"),
@@ -116,10 +118,12 @@ export default {
           item.onclick = function () {
             if (flag === true) {
               this.innerHTML = "收起";
+              _this.scrollTop = window.scrollY;
               geci[index].classList.remove("active");
               flag = false;
             } else {
               this.innerHTML = "展开";
+              window.scrollTo(0, _this.scrollTop);
               geci[index].classList.add("active");
               flag = true;
             }
